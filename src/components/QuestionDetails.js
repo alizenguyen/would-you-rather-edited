@@ -12,17 +12,14 @@ class QuestionDetails extends Component {
 
   componentDidMount () {
     const { unAnsweredQuestions, answeredQuestions, questionID } = this.props
-    console.log(questionID)
 
     for (let i=0; i < unAnsweredQuestions.length; i+=1) {
-      console.log(unAnsweredQuestions[i].id)
       if(unAnsweredQuestions[i].id === questionID) {
         this.setState({ showUnanswered: true })
       }
     }
 
     for (let i=0; i < answeredQuestions.length; i+=1) {
-      console.log(answeredQuestions[i].id)
       if(answeredQuestions[i].id === questionID) {
         this.setState({ showUnanswered: false })
       }
@@ -30,20 +27,39 @@ class QuestionDetails extends Component {
   }
 
   render() {
-    const { authedUser } = this.props
+    let { authedUser, question } = this.props
     const { showUnanswered } = this.state
 
     if (authedUser === null) {
       return <Redirect to='/' />
     }
 
-    console.log(showUnanswered)
+    question = question[0];
 
     return(
       <Fragment>
         <Nav />
-        <div className="question-full-div">
-          Testing
+        <div>
+          {showUnanswered === true ? 
+              <Question
+                key={question.id}
+                questionID={question.id}
+                author={question.author}
+                optionOne={question.optionOne.text}
+                optionTwo={question.optionTwo.text}
+                userID={question.author}
+                />
+            : 
+              <AnsweredQuestion 
+                key={question.id}
+                author={question.author}
+                optionOne={question.optionOne.text}
+                optionTwo={question.optionTwo.text}
+                userID={question.author}
+                optionOneVotes={question.optionOne.votes}
+                optionTwoVotes={question.optionTwo.votes}
+                />
+          }
         </div>
       </Fragment>
     )
@@ -52,10 +68,10 @@ class QuestionDetails extends Component {
 
 function mapStateToProps ({ users, authedUser, questions }, { match, userID }) {
   const user = users[userID];
-
   let unAnsweredQuestions = {}
-
   let answeredQuestions = {}
+  let questionID = match.params.question_id
+
 
   if (authedUser !== null) {
     unAnsweredQuestions = Object.values(Object.values(questions)).filter((question) => 
@@ -65,12 +81,16 @@ function mapStateToProps ({ users, authedUser, questions }, { match, userID }) {
         question.optionOne.votes.includes(authedUser.id) || question.optionTwo.votes.includes(authedUser.id));
   }
 
+  const question = Object.values(Object.values(questions))
+    .filter((question) => question.id.includes(questionID));
+
   return {
+    question: question,
     unAnsweredQuestions: Object.values(unAnsweredQuestions),
     answeredQuestions: Object.values(answeredQuestions),
     users: user,
     authedUser: authedUser,
-    questionID: match.params.question_id
+    questionID: questionID
   }
 }
 
