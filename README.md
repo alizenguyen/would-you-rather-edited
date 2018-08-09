@@ -1,5 +1,10 @@
 **EDITED FROM ORIGINAL TO FULFILL RUBRIC REQUIREMENTS
 
+Edits include:
+
+* The user homepage instead displays a portion of the question and a link to view more details. 
+* When 'More Details' of a question is clicked, the app redirects you to 'question/:id' where all the question details are displayed. 
+
 # Would You Rather 
 
 "Would You Rather" is a Udacity React Nanodegree project incorporating React with Redux. The project's goal was to improve to improvethe predictability of your application's state, to establish strict rules for getting, listening, and updated the store, and to identify what state should live inside of Redux and what state should live inside of React components. 
