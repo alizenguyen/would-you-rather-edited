@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Nav from './Nav'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import QuestionInitial from './QuestionInitial'
 import Question from './Question'
 import AnsweredQuestion from './AnsweredQuestion'
 import '../css/UserHome.css'
@@ -58,17 +59,18 @@ class UserHome extends Component {
         <div>
           {showUnansweredQuestions === true ? (
             unAnsweredQuestions.map(question => (
-              <Question 
+              <QuestionInitial
                 key={question.id}
                 questionID={question.id}
                 author={question.author}
                 optionOne={question.optionOne.text}
                 optionTwo={question.optionTwo.text}
                 userID={question.author}
+                category='unanswered'
                 />
             ))) 
             : answeredQuestions.map(question => (
-              <AnsweredQuestion 
+              <QuestionInitial
                 key={question.id}
                 author={question.author}
                 optionOne={question.optionOne.text}
@@ -76,6 +78,7 @@ class UserHome extends Component {
                 userID={question.author}
                 optionOneVotes={question.optionOne.votes}
                 optionTwoVotes={question.optionTwo.votes}
+                category='answered'
                 />
             ))
           }
@@ -97,6 +100,8 @@ function mapStateToProps ({questions, users, authedUser}, props) {
     answeredQuestions = Object.values(questions).filter((question) =>
         question.optionOne.votes.includes(authedUser.id) || question.optionTwo.votes.includes(authedUser.id));
   }
+
+  console.log(unAnsweredQuestions)
 
   return {
     unAnsweredQuestions: Object.values(unAnsweredQuestions),

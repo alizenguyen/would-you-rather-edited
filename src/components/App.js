@@ -4,6 +4,7 @@ import UserChoice from './UserChoice'
 import UserHome from './UserHome'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
+import QuestionDetails from './QuestionDetails'
 import LoadingBar from 'react-redux-loading'
 import '../css/App.css';
 import { connect } from 'react-redux'
@@ -28,6 +29,7 @@ class App extends Component {
                     <Route path='/home/:id' component={UserHome} />
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={LeaderBoard} />
+                    <Route path='/question/:question_id' component={QuestionDetails} />
                   </div>
                 }
           </div>
