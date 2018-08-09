@@ -64,19 +64,18 @@ class UserHome extends Component {
                 optionOne={question.optionOne.text}
                 optionTwo={question.optionTwo.text}
                 userID={question.author}
-                category='unanswered'
                 />
             ))) 
             : answeredQuestions.map(question => (
               <QuestionInitial
                 key={question.id}
+                questionID={question.id}
                 author={question.author}
                 optionOne={question.optionOne.text}
                 optionTwo={question.optionTwo.text}
                 userID={question.author}
                 optionOneVotes={question.optionOne.votes}
                 optionTwoVotes={question.optionTwo.votes}
-                category='answered'
                 />
             ))
           }
