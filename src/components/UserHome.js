@@ -3,8 +3,6 @@ import Nav from './Nav'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import QuestionInitial from './QuestionInitial'
-import Question from './Question'
-import AnsweredQuestion from './AnsweredQuestion'
 import '../css/UserHome.css'
 import { getAuthedUser } from '../actions/authedUser'
 
