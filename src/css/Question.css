@@ -1,0 +1,58 @@
+.question-full-div {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+  padding: 40px;
+  width: 800px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.question-form {
+  margin-left: 225px;
+  padding-left: 25px;
+  border-left: 1px solid lightgrey;
+}
+
+
+.question-title {
+  font-size: 18px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+}
+
+.question-choice {
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+  margin-left: 10px;
+}
+
+.question-avatar {
+  float: left;
+  object-fit: cover;
+  border-radius:50%;
+  width: 150px;
+  height: 150px;
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.question-button {
+  font-size: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.question-button:hover {
+  border: none;
+  color: #fdfffc;
+  background-color: #011627;
+}
