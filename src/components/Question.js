@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { savingQuestionAnswer } from '../actions/questions'
+import { Redirect } from "react-router";
 import '../css/Question.css'
 
 class Question extends Component {
   state = {
-    answer: ''
+    answer: '',
+    answered: false,
   }
 
   handleChange = (e) => {
@@ -23,12 +25,20 @@ class Question extends Component {
     if (!answer) {
       alert('Please select an answer.')
     } else {
-      dispatch(savingQuestionAnswer(questionID, answer))
+      dispatch(savingQuestionAnswer(questionID, answer));
+      this.setState({ answered: true })
     }
   }
 
   render() {
     const { users, authedUser } = this.props
+    const { answered } = this.state
+
+    if (answered) {
+      return (
+        <Redirect to={"/home/" + authedUser.id}/>
+      )
+    }
 
     return(
       <div className="question-full-div">
