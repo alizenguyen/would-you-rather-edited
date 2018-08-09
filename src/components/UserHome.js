@@ -98,8 +98,6 @@ function mapStateToProps ({questions, users, authedUser}, props) {
         question.optionOne.votes.includes(authedUser.id) || question.optionTwo.votes.includes(authedUser.id));
   }
 
-  console.log(unAnsweredQuestions)
-
   return {
     unAnsweredQuestions: Object.values(unAnsweredQuestions),
     answeredQuestions: Object.values(answeredQuestions),
